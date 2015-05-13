@@ -10,8 +10,9 @@ http://holanda.xyz
 
 * Concepção
 
+- Criada pela empresa Google.
 - Projetistas: Robert Griesemer, Rob Pike e Ken Thompson, 2007.
-- Criada para solucionar problemas de desenvolvimento de sistemas em larga escala, distribuídos e para ambiente multi-processados.
+- Objetivo: solucionar problemas de desenvolvimento de sistemas em larga escala, distribuídos e para ambiente multi-processados.
 - Foco na simplicidade
 
 * Características
@@ -57,9 +58,7 @@ Não há tipo de retorno para "main()".
 
 .play hello.go HLinvocation
 
-
 * Conceitos básicos
-
 
 * Tipos básicos
 
@@ -249,7 +248,7 @@ Uma _gouroutine_ é uma _thread_ leve gerenciada em tempo de execução.
 
 Tipo de dados para o qual pode-se enviar e receber dados.
 
-Baseados no artigo _"_ _Communicating_ _Sequential_ _Process_ _"_ de Tony Hoare (1978).
+Baseados no artigo [[http://dl.acm.org/citation.cfm?id=359585][_"_ _Communicating_ _Sequential_ _Process_ _"_]] de Tony Hoare (1978).
 
 .play channels.go
 
@@ -299,6 +298,7 @@ A declaração `select` permite a seleção de múltiplos canais.
 - Manipulação de _strings_
 - Execução de testes
 - Geração de documentação
+- Reflexão
 
 * Referências
 
