@@ -1,0 +1,305 @@
+Um Breve Passeio pela Linguagem de Programação Go
+14 de Maio de 2014
+Tags: go golang 
+
+Adriano J. Holanda
+Analista de Sistemas, Depto Computação e Matemática/FFCLRP/USP
+Professor, FAFRAM/Ituverava
+ajholanda@gmail.com
+http://holanda.xyz
+
+* Concepção
+
+- Projetistas: Robert Griesemer, Rob Pike e Ken Thompson, 2007.
+- Criada para solucionar problemas de desenvolvimento de sistemas em larga escala, distribuídos e para ambiente multi-processados.
+- Foco na simplicidade
+
+* Características
+
+- Sistema estático de tipos, mas parece dinâmico
+- Orientação a objetos "sem amarras"
+- Suporte a Unicode
+- Gerenciamento de memória
+- Suporte a testes e instalação
+- Concorrência
+- Código aberto
+- Biblioteca padrão reduzida, porém efetiva
+
+* Pacote, importação e exportação
+
+.play hello.go HLmai
+
+* Pacote
+
+O pacote *"main"* indica que é um programa executável.
+
+Os pacotes em `go` não possuem hierarquia.
+
+.play hello.go HLpackage
+
+* Dependência
+
+A declaração *"import"* carrega as dependências do programa.
+
+.play hello.go HLimport
+
+* Início da execução
+
+O programa começa a ser executado pela função *"main()"*.
+
+.play hello.go HLmain
+
+* Chamada da função
+
+A função do pacote importado é chamada.
+
+Não há tipo de retorno para "main()".
+
+.play hello.go HLinvocation
+
+
+* Conceitos básicos
+
+
+* Tipos básicos
+
+ bool
+
+ string
+
+ int  int8  int16  int32  int64
+ uint uint8 uint16 uint32 uint64 uintptr
+
+ byte // apelido para uint8
+
+ rune // apelido para int32
+      // representa um caracter Unicode
+
+ float32 float64
+
+ complex64 complex128
+
+* Tipos básicos
+
+.play zero.go
+
+* Funções
+
+A palavra reservada *"func"* precede as definições de funções
+
+As funções têm zero ou mais argumentos e seus nomes precedem os tipos
+
+O tipo de retorno aparece no final da declaração
+
+.play functions.go
+
+* Múltiplos resultados
+
+Uma função pode retornar múltiplos resultados
+
+.play multiple-results.go
+
+* Controle de fluxo usando "for"
+
+A sintaxe do controle de fluxo *"for"* é parecida com a da linguagem `C`, porém, sem parênteses.
+
+.play for.go
+
+* Outro uso do "for"
+
+.play for_cont.go
+
+* "for" usado no lugar de "while"
+
+Na linguagem go, não há a comando para controle de fluxo *"while"*. O *"for"* é usado em seu lugar.
+
+.play while.go
+
+* "defer"
+
+A declaração *"defer"* adia a execução da função chamada para antes do retorno da função atual.
+
+.play defer.go
+
+* Ponteiros
+
+Um *ponteiro* guarda o endereço de uma variável, porém, em Go não há aritmética de ponteiros.
+
+.play pointers.go
+
+* Estruturas
+
+Uma `struct` possui uma coleção de atributos. `type` declara que um novo tipo de dados está sendo definido.
+
+.play structs.go
+
+* Acesso aos atributos da estrutura
+
+.play struct-fields.go
+
+* Ponteiros para estruturas
+
+Os atributos de uma estrutura podem ser acessados usando ponteiros.
+
+O acesso é transparente. Em C teríamos que usar o operador "->".
+
+.play struct-pointers.go
+
+* Estrutura efetiva e ponteiros para estrutura
+
+Uma estrutura efetiva é alocada e valores iniciais são atribuídos caso haja omissão.
+
+O prefixo `&` retorna um ponteiro para a estrutura alocada.
+
+.play struct-literals.go
+
+* Vetores
+
+A expressão
+
+ var v[2]float32
+
+declara um vetor de 2 elementos do tipo `float32`.
+
+.play array.go
+
+Um vetor possui um tamanho fixo, e portanto não pode ser redimensionado.
+
+* Vetores redimensionáveis
+
+Um vetor redimensionável é chamado _slices_, e possui comprimento e capacidade.
+
+`[]T` é um _slice_ com elementos do tipo `T`
+
+.play slices.go
+
+* Range
+
+`range` pode ser usado para iterar sobre os elementos de um _slice_.
+
+.play range.go
+
+* Faixa dos vetores
+
+Os vetores e _slices_ podem ser acessados em fatias.
+
+A expressão
+
+ s[inf:sup]
+
+avalia em _slice_ contendo os elementos entre `inf` e `sup-1`, inclusive.
+
+.play slicing-slices.go /START OMIT/,/END OMIT/
+
+* Criação de slices
+
+Os _slices_ são criados usando a função `make`. Por exemplo, a expressão
+
+ a := make([]int, 5) // len(s) = 5
+
+retorna um _slice_ com 5 elementos inicializados. Enquanto que a expressão
+
+ b := make([]int, 5) // len(s) = 0, cap(s) = 5
+
+retorna um _slice_ sem elementos, mas com capacidade para 5 elementos.
+
+.play making-slices.go /START OMIT/,/END OMIT/
+
+* Tabelas de dispersão
+
+Um _map_ associa chave e valor, e é criado usando `make`.
+
+.play maps.go /START OMIT/,/END OMIT/
+
+* Funções como valores
+
+Em Go, funções são valores também.
+
+.play function-values.go
+
+* Closure
+
+_Closure_ é uma função-valor que faz referência e pode modificar variáveis fora de seu escopo. Porém, estas variáveis são limitadas a cada _closure_.
+
+.play function-closures.go /START OMIT/,/END OMIT/
+
+* Métodos e Interfaces
+
+* Métodos
+
+Go não possui classes, mas métodos podem ser definidos sobre o tipo `struct`.
+
+.play methods.go
+
+* Métodos
+
+Um método pode ser declarado sobre qualquer tipo, não somente sobre `struct`.
+
+.play methods-continued.go
+
+* Concorrência
+
+* Goroutines
+
+Uma _gouroutine_ é uma _thread_ leve gerenciada em tempo de execução.
+
+.play goroutines.go /START OMIT/,/END OMIT/
+
+* Canais
+
+Tipo de dados para o qual pode-se enviar e receber dados.
+
+Baseados no artigo _"_ _Communicating_ _Sequential_ _Process_ _"_ de Tony Hoare (1978).
+
+.play channels.go
+
+* Canais com buffer
+
+Envio para canais com _buffer_ bloqueia somente quando o _buffer_ está cheio.
+
+Recepção destes canais bloqueia somente quando o _buffer_ está vazio.
+
+.play buffered-channels.go
+
+* Fechando o canal
+
+O mensageiro pode fechar o canal para indicar que não será enviado mais valores.
+
+Os receptores podem testar se o canal foi fechado:
+
+ v, ok <- ch
+
+`ok` é falso se não houver mais valores.
+
+* Fechando o canal
+
+Somente o mensageiro pode fechar o canal.
+
+.play range-and-close.go
+
+* Seleção de canais
+
+A declaração `select` permite a seleção de múltiplos canais.
+
+`select` bloqueia até um canal possa ser executado. Se houver vários canais prontos, um é escolhido aleatoreamente.
+
+* Seleção de canais
+
+.play select.go  /START OMIT/,/END OMIT/
+
+* Lição de casa
+
+- Declarações `switch` ... `case`
+- Adição de elementos em um _slice_
+- Redimensionamento de um _slice_
+- Expressão de erros
+- Servidores web
+- Imagens
+- Entrada e saída
+- Manipulação de _strings_
+
+* Referências
+
+.link http://tour.golang.org A Tour of Go
+.link http://golang.org/doc/effective_go.html Effective Go
+.link https://gobyexample.com Go by Example
