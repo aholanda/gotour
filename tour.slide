@@ -297,6 +297,8 @@ A declaração `select` permite a seleção de múltiplos canais.
 - Imagens
 - Entrada e saída
 - Manipulação de _strings_
+- Execução de testes
+- Geração de documentação
 
 * Referências
 
