@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const Pi = 3.14 // constant
+const Pi = 3.14 // constante
 
 func main() {
 	var i int

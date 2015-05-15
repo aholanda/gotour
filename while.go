@@ -3,9 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	sum := 1
-	for sum < 1000 { // HL
-		sum += sum
+	soma := 1
+	for soma < 1000 { // HL
+		soma += soma
 	} // HL
-	fmt.Println(sum)
+	fmt.Println(soma)
 }
